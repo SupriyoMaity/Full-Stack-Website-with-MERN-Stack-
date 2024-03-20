@@ -24,8 +24,9 @@ const registerSchema=z.object({
     .string({required_error:"Password is required"})
     .trim()
     .min(8,{message:"Password must be at lest of 8 characters"})
-    .max(50,{message:"Password must not be more than 50 characters"}),
-
+    .max(50,{message:"Password must not be more than 50 characters"})
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+]).{8,}$/, { message: "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character" })
+    .refine((password) => !/password|123456|qwerty|abc123/i.test(password), { message:"Avoid using common patterns such as 'password' or sequential characters"}),
    
     
 

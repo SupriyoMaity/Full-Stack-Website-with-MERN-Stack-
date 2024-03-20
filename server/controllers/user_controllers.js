@@ -24,10 +24,15 @@ const service = async (req, res) => {
 // register
 const postregister = async (req, res) => {
     try {
+        const email=req.body.email;
+        const checkEmail=await register.findOne({email:email})
+        if(!checkEmail){
+            return res.status(400).json({ message: "Email is already exist!" });
+        }
        
         const newUser = new register({
             name: req.body.name,
-            email: req.body.email,
+            email: email,
             phone: req.body.phone,
             password: req.body.password,
 
@@ -96,6 +101,7 @@ const postcontact = async (req, res) => {
         res.status(201).json({ message: 'message sent ' });
     } catch (error) {
         console.log(error);
+        res.status(201).json({ message: 'somethings is wrong ' });
     }
 
 }

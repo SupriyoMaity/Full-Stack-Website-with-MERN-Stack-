@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 
 function Logoutpage() {
@@ -12,11 +13,11 @@ function Logoutpage() {
       });
     console.log(res)
       if(res.status){
-        alert("successfully  logged out");
+        toast.success("successfully  logged out");
         navigate("/login")
       }
       else{
-        alert("something is wrong")
+        toast.error("something is wrong")
       }
       
     } catch (error) {
