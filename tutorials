@@ -1,0 +1,133 @@
+MERN Stack
+---------------------FRONTEND-----------------------------------------------------------
+------mkdir client
+------npm create vite@latest
+------cd client
+------npm install
+------npm run dev
+------npm i react-router-dom
+        react-router-dom is used in React applications to handle client-side routing and navigation. It allows you to create single-page applications (SPAs) where different components are rendered based on the URL without reloading the page.
+
+        import { BrowserRouter  Router, Route, } from 'react-router-dom';
+        <BrowserRouter>
+        <Routes>
+                <Route path="/" element={<Home />} />
+        </Routes>
+        </BrowserRouter>
+
+     **navlink
+     NavLink is a component provided by react-router-dom library in React .
+     import {NavLink,Link} from 'react-router-dom'
+     <a href=""></a>     
+     <NavLink to=""></NavLink> 
+
+     ***navigate
+     import {useNavigate}  from "react-router-dom";
+     const navigate = useNavigate();
+     navigate("/")
+------npm i react-toastify
+------npm i axios
+
+-------npm i styled-components
+        In React, styled-components is a popular library for styling React components with CSS. It allows you to write CSS in your JavaScript files.
+        -import styled from "styled-components";
+        
+        ***hook
+        In react a hook is a special function that allows  you to use state and other react features without writing a class. Hooks are used for functional components.
+
+        types of hooks--- useState(),useContext(),useEffect() ,useReducer(), useCallback and useMemo(), useRef() etc.
+
+        1. useState: It returns an array with two values the first value represents the current state and the second function that updates the state.
+          import------import { useState } from "react";
+          Initialize -------const [color, setColor] = useState("");
+
+
+        2.contaxt api
+        React Context is a way to manage state globally. 
+        It provides a centralized store for shared data between  components. 
+        The main purpose of using context is to  avoid passing props down each level of the application’s tree. 
+        
+        1) Create a context: const ColorContext = React.createContext();
+        2) Provide the value in the parent component using Provider :
+            <ColorContext.Provider value={{ color }} >
+                    {/* Rest of your app */}
+             </ColorContext.Provider>
+        3) Consume the context in child  components using consumer :
+              <ColorContext.Consumer>
+               {(context)=>{
+                   return (
+                       // Use the values from context here ...
+                   )
+                   }}
+              </ColorContext.Consumer>
+        
+
+
+
+
+
+---------------------BACKEND-----------------------------------------------------------
+-----npm init
+        start new node js project.craete  a package.json file in the current directory.
+
+-----npm i express
+        It is used to install the Express.js framework for Node.js applications. Express.js is a popular web application framework for Node.js, used to build web servers and APIs quickly and easily.
+        This will create package-lock.json file and node_modules folder.
+
+-----npm i nodemon     
+    nodemon is a tool that helps develop Node.js based applications by automatically restarting the node application when file changes in the directory are detected. 
+
+-----npm i dotenv
+        It is used to hide sensitive data like API keys from being visible on GitHub.
+
+-----npm install mongoose
+        It is used to work with MongoDB database.
+        
+------mkdir Routes
+         |This will contains all the routes and endpoints required for the server and also thier required files like for authentication routes we can create a file and setup routes.
+        -----express.Router()
+                is a method  of creating routes in Express, it returns an instance of Router class which can be used to build   create router object for handling routes.
+
+------mkdir Controllers
+        In an Express.js application, a controller typically refers to a separate module that contains related route handlers. Controllers are responsible for handling user input and producing a response. This separation of concerns makes the application more modular, easier to test, and maintain.
+------mkdir models
+        This folder will contain the schema definitions for your MongoDB models.
+        models  are basically classes that define how our data should be  structured, validated, and saved into
+         the  schema for our data model. 
+-------npm i bcrypt
+        bcrypt are used for securely hashing passwords in web applications, providing strong protection against common password attacks.
+        Used to hash passwords before saving them into the database.
+
+        two methods =>bcrypt.hash & bcrypt.compare
+        bcrypt.hash(Password, saltRounds)
+        bcrypt.compare(myPlaintextPassword, hash)
+
+-------npm i jwt
+        jwt stand for jeson web token.
+        We can use it to implement authentication and authorization in our application.
+
+        JWTs consist of three parts: a header, a payload, and a signature, separated by dots (.). The header typically contains metadata about the token, the payload contains the claims, and the signature is used to verify the authenticity of the token.
+       
+        tokens such as jwt are typically not stored in the database along with other user details. inseted, they are issues by the server during the authentication process and then Store on the client side for later use.
+
+--------npm zod
+        Zod is a TypeScript-first schema declaration and validation library.
+                
+--------Express.js error handeling
+        except error-handling functions have four arguments instead of three: (err, req, res, next).
+        define error-handling middleware last, after other app.use() and routes calls;
+        
+     **Cross-Origin Resource Sharing (CORS) is a security feature implemented by web browsers to restrict web page scripts from making requests to domains other than the one that served the web page. 
+
+-------npm i cors
+        CORS stands for Cross Origin Resource Sharing.  CORS is a security feature that restricts how resources are shared between domains.
+        var cors = require('cors')
+        const corsOptions = {
+        origin: 'http://localhost:5173',
+        methods: "GET, POST, DELETE, PUT, PATCH, HEAD",
+        Credential:true,
+        }
+        app.use(cors(corsOptions))
+
+
+
