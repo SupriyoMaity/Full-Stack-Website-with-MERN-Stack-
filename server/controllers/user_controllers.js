@@ -48,7 +48,7 @@ const postregister = async (req, res) => {
         });
         res.status(201).json({ message: 'user created!' });
     } catch (error) {
-        res.status(400).json({ message: "error" });
+        res.status(400).json({ message: "some things is wrong" });
     }
 }
 
