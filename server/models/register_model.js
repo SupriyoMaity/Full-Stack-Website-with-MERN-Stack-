@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 // Define the schema for the register
 const registerSchema = new mongoose.Schema({
     name: {
@@ -28,8 +27,6 @@ const registerSchema = new mongoose.Schema({
             required:true
         }
     }]
-
-
 });
 //  Method to hash passwords.
 registerSchema.pre("save", async function (next) {

@@ -24,22 +24,16 @@ const service = async (req, res) => {
 // register
 const postregister = async (req, res) => {
     try {
-        const email=req.body.email;
-        const checkEmail=await register.findOne({email:email})
-        if(!checkEmail){
-            return res.status(400).json({ message: "Email is already exist!" });
-        }
-       
+        const email = req.body.email;
+        const checkEmail = await register.findOne({ email: email })
         const newUser = new register({
             name: req.body.name,
             email: email,
             phone: req.body.phone,
             password: req.body.password,
-
         });
         console.log(newUser);
         await newUser.save()
-
         const token = await newUser.generatetokens()
         console.log(token);
         res.cookie('auth_token', token, {
@@ -55,14 +49,11 @@ const postregister = async (req, res) => {
 // login
 const postlogin = async (req, res) => {
     try {
-        // email=req.body.email;
-        // password=req.body.password;
         const { email, password } = req.body;
         const useremail = await register.findOne({ email: email })
         if (!useremail) {
             return res.status(400).json({ message: "Email is incorrect!" });
         }
-
         const isValid = await bcrypt.compare(password, useremail.password);
         const token = await useremail.generatetokens()
         res.cookie('auth_token', token, {
@@ -72,18 +63,12 @@ const postlogin = async (req, res) => {
         console.log(token)
         if (isValid) {
             res.status(201).json({ message: 'login successful', });
-
-
         }
         else {
             return res.status(400).json({ message: "Password is incorrect" });
         }
-
-
     } catch (error) {
         res.status(500).json({ message: error })
-
-
     }
 }
 
